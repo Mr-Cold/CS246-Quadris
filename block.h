@@ -25,7 +25,7 @@ public:
 	char getType();
 	int getID();
 	void transferID(int index, int r, int c);
-	bool isLeagalMove(int pr, int pc);
+	bool isLegalMove(int pr, int pc);
 	bool isLegalCell(int r, int c);
 	void left();
 	void right();
