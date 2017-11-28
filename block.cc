@@ -9,12 +9,7 @@ using namespace std;
 
 Block::Block(Board* pboard): board { pboard }{}
 
-Block::~Block() {
-    if (board) delete board;
-    for (vector<Cell *>::iterator it = cells.begin(); it != cells.end(); ++it) {
-        delete it;
-    }
-}
+Block::~Block() {}
 
 void Block::setLevel(int lvl) {
 	curr_level = lvl;

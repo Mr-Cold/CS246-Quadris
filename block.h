@@ -10,13 +10,13 @@ class Board;
 class Block {
 protected:
 	Board* board;
-    std::vector<Cell *> cells;
+	std::vector<Cell *> cells;
 	char type;
 	int ID;
 	int curr_level;
 public:
 	Block(Board* pboard);
-	virtual ~Block();
+	~Block();
 
 	virtual void rotateCW() = 0;
 	virtual void rotateCCW() = 0;
@@ -25,7 +25,7 @@ public:
 	char getType();
 	int getID();
 	void transferID(int index, int r, int c);
-	bool isLegalMove(int pr, int pc);
+	bool isLeagalMove(int pr, int pc);
 	bool isLegalCell(int r, int c);
 	void left();
 	void right();
