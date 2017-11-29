@@ -15,6 +15,7 @@ zBlock::zBlock(Board * pb, int id): Block{pb} {
     cells.emplace_back(new Cell(2, 1, id, 'Z', curr_level, true));
     cells.emplace_back(new Cell(3, 1, id, 'Z', curr_level, true));
     cells.emplace_back(new Cell(3, 2, id, 'Z', curr_level, true));
+
 }
 
 void zBlock::rotateCW() {
