@@ -6,5 +6,8 @@
 //  Copyright © 2017年 Katie. All rights reserved.
 //
 
-#include <stdio.h>
-//////
+#include "board.h"
+using namespace std;
+
+std::ostream &operator<<(std::ostream &out, const Board &b);
+
