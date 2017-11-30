@@ -9,6 +9,7 @@
 #include "board.h"
 using namespace std;
 
+
 std::ostream &operator<<(std::ostream &out, const Board &b) {
     out << "Level:      " << b.level << endl;
     out << "Score:      " << b.curr_score << endl;
@@ -24,3 +25,4 @@ std::ostream &operator<<(std::ostream &out, const Board &b) {
     out << "Next:" << endl;
     out << next_block;
 }
+
