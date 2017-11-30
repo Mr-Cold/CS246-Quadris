@@ -37,12 +37,16 @@ bool Block::isLegalCell(int r, int c) {
 	}
 }
 
+vector<Cell*> Block::getCells() {
+	return cells;
+}
+
 bool Block::isLegalMove(int pr, int pc) {
 	bool legal = true;
 	for (int i = 0; i < 4; i++) {
 		int tmpR = cells.at(i)->getRow() + pr;
 		int tmpC = cells.at(i)->getCol() + pc;
-		if (isLegalCell(tmpR, tmpC)){
+		if (! isLegalCell(tmpR, tmpC)){
 			legal = false;
 			break;
 		}
@@ -61,6 +65,7 @@ void Block::left() {
 }
 
 void Block::right() {
+
 	if (isLegalMove(0, 1)) {
 		for (int i = 0; i < 4; i++) {
 			int tmpR = cells.at(i)->getRow();
@@ -80,13 +85,26 @@ void Block::down() {
 	}
 }
 std::ostream &operator<<(std::ostream &out, Block &b) {
-	for (int i = 3; i < 7; i++) {
-		string s;
+	int count = 0;
+	for (int i = 0; i < 4; i++) {
+		string s = "";
 		for (int j = 0; j < 4; j++) {
-			if (b.cells.at(j)->getRow() == i && b.cells.at(j)->getCol() == j) {
-				s += b.type;
-			}
+				if (b.cells.at(count)->getRow() == i && b.cells.at(count)->getCol() == j) {
+					s += b.type;
+					count++;
+					if (count == 4) {
+						count = 3;
+					}
+				}
+				else {
+					s += " ";
+				}
+			
 		}
-		out << s<<endl;
+		
+		if (s.find_first_not_of(' ') != std::string::npos){
+			out << s << endl;
+		}
 	}
+	return out;
 }

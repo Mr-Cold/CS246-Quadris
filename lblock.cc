@@ -4,6 +4,7 @@
 lBlock::lBlock(Board *pb, int id) :
 	Block{ pb }
 {
+	type = 'L';
 	cells.emplace_back(new Cell(3, 0, id, 'L', curr_level, true));
 	cells.emplace_back(new Cell(3, 1, id, 'L', curr_level, true));
 	cells.emplace_back(new Cell(3, 2, id, 'L', curr_level, true));

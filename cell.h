@@ -18,6 +18,7 @@ public:
 	int getRow();
 	int getCol();
 	int getID();
+	int getLvl();
 	void setID(int);
 	void setRow(int);
 	void setCol(int);

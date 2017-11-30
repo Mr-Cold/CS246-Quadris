@@ -5,6 +5,7 @@
 
 class Board;
 class jBlock : public Block {
+public:
 	jBlock(Board * pb, int id);
 	~jBlock();
 

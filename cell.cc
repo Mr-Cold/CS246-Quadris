@@ -26,6 +26,10 @@ int Cell::getID() {
 	return b_id;
 }
 
+int Cell::getLvl() {
+	return lvl_started;
+}
+
 void Cell::setID(int id) {
 	b_id = id;
 }

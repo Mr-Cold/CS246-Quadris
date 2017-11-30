@@ -1,13 +1,13 @@
 #include "jblock.h"
 #include "cell.h"
 
-jBlock::jBlock(Board *pb, int id) :
-	Block{ pb } 
-{
-		cells.emplace_back(new Cell(2, 0, id, 'J', curr_level, true));
-		cells.emplace_back(new Cell(3, 0, id, 'J', curr_level, true));
-		cells.emplace_back(new Cell(3, 1, id, 'J', curr_level, true));
-		cells.emplace_back(new Cell(3, 2, id, 'J', curr_level, true));
+jBlock::jBlock(Board *pb, int id) :	Block{ pb } 
+{		
+	type = 'J';
+	cells.emplace_back(new Cell(2, 0, id, 'J', curr_level, true));
+	cells.emplace_back(new Cell(3, 0, id, 'J', curr_level, true));
+	cells.emplace_back(new Cell(3, 1, id, 'J', curr_level, true));
+	cells.emplace_back(new Cell(3, 2, id, 'J', curr_level, true));
 }
 
 void jBlock::rotateCW() {
