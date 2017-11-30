@@ -11,6 +11,7 @@
 #include "block.h"
 
 tBlock::tBlock(Board * pb, int id): Block{pb} {
+	type = 'T';
     cells.emplace_back(new Cell(2, 0, id, 'T', curr_level, true));
     cells.emplace_back(new Cell(2, 1, id, 'T', curr_level, true));
     cells.emplace_back(new Cell(2, 2, id, 'T', curr_level, true));

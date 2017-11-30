@@ -24,6 +24,7 @@ public:
 	void setLevel(int);
 	char getType();
 	int getID();
+	std::vector<Cell* > getCells();
 	void transferID(int index, int r, int c);
 	bool isLegalMove(int pr, int pc);
 	bool isLegalCell(int r, int c);

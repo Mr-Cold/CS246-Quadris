@@ -5,6 +5,7 @@
 
 class Board;
 class oBlock : public Block {
+public:
 	oBlock(Board * pb, int id);
 	~oBlock();
 

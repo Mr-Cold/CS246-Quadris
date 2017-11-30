@@ -5,6 +5,7 @@
 
 class Board;
 class lBlock : public Block {
+public:
 	lBlock(Board * pb, int id);
 	~lBlock();
 

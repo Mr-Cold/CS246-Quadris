@@ -11,7 +11,7 @@
 #include "block.h"
 
 sBlock::sBlock(Board * pb, int id): Block{pb} {
-
+	type = 'S';
     cells.emplace_back(new Cell(2, 1, id, 'S', curr_level, true));
     cells.emplace_back(new Cell(2, 2, id, 'S', curr_level, true));
     cells.emplace_back(new Cell(3, 0, id, 'S', curr_level, true));
