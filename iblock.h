@@ -5,10 +5,10 @@
 
 class Board;
 class iBlock : public Block {
+public:
 	iBlock(Board * pb, int id);
 	~iBlock();
 
-public:
 	void rotateCW();
 	void rotateCCW();
 };

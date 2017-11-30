@@ -5,6 +5,7 @@
 
 class Board;
 class zBlock : public Block {
+public:
 	zBlock(Board * pb, int id);
 	~zBlock();
 

@@ -1,10 +1,3 @@
-//
-//  main.cpp
-//  q5
-//
-//  Created by Katie on 2017/11/28.
-//  Copyright © 2017年 Katie. All rights reserved.
-//
 
 #include <iostream>
 #include <string>
@@ -13,7 +6,9 @@
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-    for (int i = 1; i <= argc; i++) {
+	Board *b = new Board();
+	
+    for (int i = 1; i < argc; i++) {
         string thearg = argv[i];
         if (thearg == "-test") {
             
@@ -27,11 +22,13 @@ int main(int argc, const char * argv[]) {
             int n;
             istringstream ss(thearg);
             ss >> n;
-            setLevel(n);
+            b->setLevel(n);
         } else {
             continue;
         }
     }
+
+	cout << *b << endl;
     string command;
     while (cin >> command) {
         // check if command include num
@@ -65,21 +62,21 @@ int main(int argc, const char * argv[]) {
         string hint = "hint";
         for (int i = 0; i < num; i++) {
             if (left.find(command) != string::npos) {
-                
+				b->left();
             } else if (right.find(command) != string::npos) {
-                
+				b->right();
             } else if (down.find(command) != string::npos) {
-                
+					b->down();
             } else if (clockwise.find(command) != string::npos) {
-                
+				b->rotateCW();
             } else if (counterclockwise.find(command) != string::npos) {
-                
+				b->rotateCCW();
             } else if (drop.find(command) != string::npos) {
-                
+				b->drop();
             } else if (levelup.find(command) != string::npos) {
-                
+				b->lvlUp();
             } else if (leveldown.find(command) != string::npos) {
-                
+				b->lvlDown();
             } else if (norandom.find(command) != string::npos) {
                 
             } else if (random.find(command) != string::npos) {
@@ -87,7 +84,7 @@ int main(int argc, const char * argv[]) {
             } else if (sequence.find(command) != string::npos) {
                 
             } else if (I.find(command) != string::npos) {
-                
+
             } else if (J.find(command) != string::npos) {
                 
             } else if (L.find(command) != string::npos) {
@@ -109,6 +106,7 @@ int main(int argc, const char * argv[]) {
                 continue;
             }
         }
+		cout << *b << endl;
     }
 }
 

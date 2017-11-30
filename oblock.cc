@@ -12,6 +12,7 @@
 #include "block.h"
 
 oBlock::oBlock(Board * pb, int id): Block{pb} {
+	type = 'O';
     cells.emplace_back(new Cell(2, 0, id, 'O', curr_level, true));
     cells.emplace_back(new Cell(2, 1, id, 'O', curr_level, true));
     cells.emplace_back(new Cell(3, 0, id, 'O', curr_level, true));
