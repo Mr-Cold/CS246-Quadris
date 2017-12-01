@@ -58,13 +58,15 @@ Board::~Board() {
 
 bool Board::hasNeighbour(int r, int c) {
 	int tmpid = getCell(r, c)->getID();
-	bool has_neighbour = false;
+	bool has_neighbour = true;
 	//check from (r-3,c-3) to (r+3, c+3)
 	for (int i = -3; i < 4; i++) {
 		for (int j = -3; j < 4; j++) {
-			if (getCell(r + i, c + j)->getID() == tmpid) {
-				has_neighbour = true;
-				break;
+			if ((r + i < row_size) && (r + i > 3) && (c + j < col_size) && (c + j >= 0) && (i != 0 || j != 0) && (r + i != r)) {
+				if (getCell(r + i, c + j)->getID() == tmpid && tmpid >=0) {
+					has_neighbour = false;
+					break;
+				}
 			}
 		}
 	}
@@ -84,20 +86,24 @@ void Board::calculateScore() {
 		}
 		if (linefull) {
 			for (int k = 0; k < col_size; k++) {
-				bool sameid = false;
-				for (auto it : usedID) {
-					if (grids[i + linecleared][k]->getID() == it) {
-						sameid = true; // means the block hasn't been completely removed yet
+				if (hasNeighbour(i + linecleared, k)) {
+					bool sameid = false;
+					for (auto it : usedID) {
+						if (grids[i + linecleared][k]->getID() == it) {
+							sameid = true; // means the block hasn't been completely removed yet
+						}
+					}
+					if (sameid == false) { // if the block was cleared, add bonus mark for that block
+						usedID.emplace_back(grids[i + linecleared][k]->getID());
+						int block_bonus = getCell(i + linecleared, k)->getLvl() + 1;
+						curr_score += block_bonus*  block_bonus;
 					}
 				}
-				if (sameid == false) { // if the block was cleared, add bonus mark for that block
-					usedID.emplace_back(grids[i + linecleared][k]->getID());
-					int block_bonus = getCell(i + linecleared, k)->getLvl() + 1;
-					curr_score += block_bonus*  block_bonus;
-				}
 			}
-			removeRow(i + linecleared);
-			linecleared++;
+				cout << endl << endl << endl << "**************************************Remove:  " << i + linecleared << endl << endl << endl;
+				removeRow(i + linecleared);
+				linecleared++;
+			
 		}
 	}
 	// if we have some rows cleraed, add the score
@@ -110,10 +116,11 @@ void Board::calculateScore() {
 }
 
 void Board::removeRow(int r) {
-	for (int i = r; i > 0; i++) {
+	for (int i = r; i > 0; i--) {
 		for (int j = 0; j < col_size; j++) {
 			if (i == r) {
 				delete grids[i][j];
+				grids[i][j] = grids[i - 1][j];
 			}
 			else {
 				grids[i][j] = grids[i - 1][j];
@@ -148,7 +155,7 @@ void Board::drawBlock() {
 	for (int i = 0; i < 4; i++) {
 		int r = cells[i]->getRow();
 		int c = cells[i]->getCol();
-		//delete grids[r][c];
+		delete grids[r][c];
 		grids[r][c] = cells[i];
 		
 	}
@@ -280,7 +287,7 @@ void Board::right() {
 
 void Board::down() {
 	undrawBlock();
-	curr_block->right();
+	curr_block->down();
 	drawBlock();
 }
 
@@ -325,14 +332,14 @@ std::ostream &operator<<(std::ostream &out, const Board &b) {
 	out << "Level:      " << b.level << endl;
 	out << "Score:      " << b.curr_score << endl;
 	out << "Hi Score:   " << b.hi_score << endl;
-	out << "------------" << endl;
+	out << "-----------" << endl;
 	for (int i = 0; i < 18; i++) {
 		for (int j = 0; j < 11; j++) {
 			out << *(b.grids[i][j]);
 		}
 		out << endl;
 	}
-	out << "------------" << endl;
+	out << "-----------" << endl;
 	out << "Next:" << endl;
 	out << *(b.next_block);
 

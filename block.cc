@@ -29,6 +29,7 @@ void Block::transferID(int index, int r, int c) {
 }
 
 bool Block::isLegalCell(int r, int c) {
+	//cout << "isLegalCell:   (" << r << "," << c << ")" << endl;
 	if (r < 0 || r >= 18 || c < 0 || c >= 11 || board->getCell(r, c)->isFilled()) {
 		return false;
 	}

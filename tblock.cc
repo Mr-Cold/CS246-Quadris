@@ -25,28 +25,28 @@ void tBlock::rotateCW() {
         (cells[3]->getRow() > cells[1]->getRow())) {
         //check if cells on board are avaliable
         if (isLegalCell(cells.at(0)->getRow() - 1, cells.at(0)->getCol() + 1) && isLegalCell(cells.at(2)->getRow() + 1, cells.at(2)->getCol() - 1) && isLegalCell(cells.at(3)->getRow() - 1, cells.at(3)->getCol() - 1)) {
-            transferID(0, cells.at(1)->getRow() - 1, cells.at(1)->getCol() + 1);
+            transferID(0, cells.at(0)->getRow() - 1, cells.at(0)->getCol() + 1);
             transferID(2, cells.at(2)->getRow() + 1, cells.at(2)->getCol() - 1);
             transferID(3, cells.at(3)->getRow() - 1, cells.at(3)->getCol() - 1);
         }
     }
     // if it t is on the left
-    if ((cells[3]->getRow() == cells[1]->getRow()) &&
+    else if ((cells[3]->getRow() == cells[1]->getRow()) &&
         (cells[3]->getCol() < cells[1]->getCol())) {
         //check if cells on board are avaliable
         if (isLegalCell(cells.at(0)->getRow() + 2, cells.at(0)->getCol() + 1) && isLegalCell(cells.at(1)->getRow() + 1, cells.at(1)->getCol()) && isLegalCell(cells.at(2)->getRow(), cells.at(2)->getCol() - 1) && isLegalCell(cells.at(3)->getRow(), cells.at(3)->getCol() + 1)) {
-            transferID(0, cells.at(1)->getRow() + 2, cells.at(1)->getCol() + 1);
+            transferID(0, cells.at(0)->getRow() + 2, cells.at(0)->getCol() + 1);
             transferID(1, cells.at(1)->getRow() + 1, cells.at(1)->getCol());
             transferID(2, cells.at(2)->getRow(), cells.at(2)->getCol() - 1);
             transferID(3, cells.at(3)->getRow(), cells.at(3)->getCol() + 1);
         }
     }
     // if it t is on the top
-    if ((cells[3]->getCol() == cells[1]->getCol()) &&
+	else  if ((cells[3]->getCol() == cells[1]->getCol()) &&
         (cells[3]->getRow() < cells[1]->getRow())) {
         //check if cells on board are avaliable
         if (isLegalCell(cells.at(0)->getRow(), cells.at(0)->getCol() - 2) && isLegalCell(cells.at(1)->getRow() - 1, cells.at(1)->getCol() - 1) && isLegalCell(cells.at(2)->getRow() - 2, cells.at(2)->getCol())) {
-            transferID(0, cells.at(1)->getRow(), cells.at(1)->getCol() - 2);
+            transferID(0, cells.at(0)->getRow(), cells.at(0)->getCol() - 2);
             transferID(1, cells.at(1)->getRow() - 1, cells.at(1)->getCol() - 1);
             transferID(2, cells.at(2)->getRow() - 2, cells.at(2)->getCol());
         }
